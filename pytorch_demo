@@ -1,0 +1,76 @@
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader, TensorDataset
+
+# Dummy Dataset
+X = torch.randn(1000, 20)
+y = torch.randint(0, 2, (1000, 1)).float()
+
+dataset = TensorDataset(X, y)
+
+# TODO 1:
+# Create a DataLoader with batch size 32
+train_loader = __________
+
+
+class BinaryClassifier(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        # TODO 2:
+        # Define a neural network:
+        # Input -> 64 -> ReLU -> 32 -> ReLU -> 1 -> Sigmoid
+        self.network = __________
+
+    def forward(self, x):
+        return self.network(x)
+
+
+# TODO 3:
+# Initialize model
+model = __________
+
+# TODO 4:
+# Define Binary Cross Entropy loss
+criterion = __________
+
+# TODO 5:
+# Define Adam optimizer with learning rate 0.001
+optimizer = __________
+
+
+num_epochs = 5
+
+for epoch in range(num_epochs):
+
+    # TODO 6:
+    # Set model to training mode
+    __________
+
+    total_loss = 0
+
+    for features, labels in train_loader:
+
+        # TODO 7:
+        # Clear gradients
+        __________
+
+        # TODO 8:
+        # Forward pass
+        outputs = __________
+
+        # TODO 9:
+        # Compute loss
+        loss = __________
+
+        # TODO 10:
+        # Backward pass
+        __________
+
+        # TODO 11:
+        # Update weights
+        __________
+
+        total_loss += loss.item()
+
+    print(f"Epoch {epoch+1}: Loss = {total_loss:.4f}")
